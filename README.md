@@ -7,4 +7,7 @@
  - git add .
  - git commit -m "chore: exercise X-X"
  - git push
- -
+
+# Process after a pull request is merged
+ - git checkout main
+ - git pull
