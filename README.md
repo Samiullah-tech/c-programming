@@ -11,3 +11,8 @@
 # Process after a pull request is merged
  - git checkout main
  - git pull
+
+Resources for learning Git
+ - https://youtu.be/rH3zE7VlIMs?si=u44a79-X1fbgTXZJ
+ - http://www-cs-students.stanford.edu/~blynn/gitmagic/
+ - https://gist.github.com/jaseemabid/1321592
