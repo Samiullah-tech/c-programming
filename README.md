@@ -24,7 +24,7 @@ This repository contains exercises from the book The C Programming Language, org
    ```
 2. Create and switch to a new branch:
    ```bash
-   git checkout -b chore/exerciseX-Y
+   git checkout chore/exerciseX-Y
    ```
 
 ## Directory & File Naming
