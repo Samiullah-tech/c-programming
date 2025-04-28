@@ -13,20 +13,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install GCC
-        run: sudo apt-get update && sudo apt-get install -y gcc
+      - name: Show available compilers
+        run: |
+          echo "cc:"
+          cc --version || true
+          echo "clang:"
+          clang --version || true
 
       - name: Compile and Run C Files
         run: |
           for file in *.c; do
             exe="${file%.c}"
-            gcc "$file" -o "$exe"
+            # use clang (or fallback to cc)
+            ${CC:-clang} "$file" -o "$exe" -Wall -Wextra -Werror
             if [ $? -eq 0 ]; then
-              echo "Running $exe..."
+              echo "Running $exe…"
               ./"$exe"
               rm "$exe"
             else
-              echo "Failed to compile $file"
+              echo "❌ Failed to compile $file"
               exit 1
             fi
           done
