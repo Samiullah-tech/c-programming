@@ -13,25 +13,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Show available compilers
+      - name: Show available compiler
         run: |
-          echo "cc:"
+          echo "cc -> $(which cc)"
           cc --version || true
-          echo "clang:"
-          clang --version || true
 
-      - name: Compile and Run C Files
+      - name: Compile & Run all .c under exercises/
         run: |
-          for file in *.c; do
+          # find every .c under exercises/, even in subdirectories
+          find exercises -type f -name '*.c' | while IFS= read -r file; do
+            echo "🛠  Building $file"
+            # strip .c to get the exe path
             exe="${file%.c}"
-            # use clang (or fallback to cc)
+            # compile (clang or fallback to cc)
             ${CC:-clang} "$file" -o "$exe" -Wall -Wextra -Werror
-            if [ $? -eq 0 ]; then
-              echo "Running $exe…"
-              ./"$exe"
-              rm "$exe"
-            else
-              echo "❌ Failed to compile $file"
-              exit 1
-            fi
+            echo "▶️  Running $exe"
+            "$exe"
+            # clean up
+            rm "$exe"
           done
