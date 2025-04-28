@@ -1,0 +1,32 @@
+name: C Code Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y gcc
+
+      - name: Compile and Run C Files
+        run: |
+          for file in *.c; do
+            exe="${file%.c}"
+            gcc "$file" -o "$exe"
+            if [ $? -eq 0 ]; then
+              echo "Running $exe..."
+              ./"$exe"
+              rm "$exe"
+            else
+              echo "Failed to compile $file"
+              exit 1
+            fi
+          done
