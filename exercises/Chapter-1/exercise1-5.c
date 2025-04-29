@@ -6,7 +6,7 @@
 
 int main()
 {
-    printf("Fahrenheit-Celsius table");
+    printf("Fahrenheit-Celsius table\n");
     float fahr, celsius;
 
     fahr = UPPER;
