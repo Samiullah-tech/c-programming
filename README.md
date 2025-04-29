@@ -40,7 +40,11 @@ This repository contains exercises from the book The C Programming Language, org
 ## After Completing an Exercise
 1. Stage your changes:
    ```bash
-   git add exercises-chapterX/exercise-Y.c
+   git add .
+   ```
+   or alternatively if you want to stage a single file:
+   ```bash
+   git add exercises/ChapterX/exercise-Y.c
    ```
 2. Commit with a clear message:
    ```bash
