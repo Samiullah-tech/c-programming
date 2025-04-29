@@ -18,7 +18,7 @@ REM Extract the base name of the file (without the extension)
 for %%F in ("%SOURCE_FILE%") do set EXEC_FILE=%%~nF
 
 REM Compile the C program
-gcc  "%SOURCE_FILE%" -o "%EXEC_FILE%.exe"
+gcc -Wall -Werror  "%SOURCE_FILE%" -o "%EXEC_FILE%.exe"
 
 REM Check if the compilation was successful
 if %errorlevel% neq 0 (
